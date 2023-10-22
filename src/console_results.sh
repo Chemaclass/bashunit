@@ -91,7 +91,7 @@ function console_results::print_successful_test() {
   ((_SUCCESSFUL_TEST_COUNT++))
 
   if [[ "$SIMPLE_OUTPUT" == true ]]; then
-    if (( _SUCCESSFUL_TEST_COUNT % 50 != 0 )); then
+    if (( _SUCCESSFUL_TEST_COUNT % "$SIMPLE_OUTPUT_DOTS_PER_LINE" != 0 )); then
       printf "."
     else
       echo "."
