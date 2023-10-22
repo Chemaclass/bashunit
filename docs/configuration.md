@@ -8,6 +8,7 @@ Full example with the default values:
 
 ```.env
 SIMPLE_OUTPUT=false
+SIMPLE_OUTPUT_DOTS_PER_LINE=50
 STOP_ON_FAILURE=false
 SHOW_HEADER=true
 HEADER_ASCII_ART=false
@@ -45,6 +46,39 @@ Running tests/functional/logic_test.sh
 SIMPLE_OUTPUT=false
 ```
 :::
+
+## Simple output dots per line
+
+> `SIMPLE_OUTPUT_DOTS_PER_LINE=50`
+
+Define how many dots per line should be display.
+
+::: info
+This configuration only works when `SIMPLE_OUTPUT` is `true`.
+:::
+
+::: code-group
+```[Output]
+..................................................
+...............
+```
+```env [Example]
+SIMPLE_OUTPUT_DOTS_PER_LINE=50
+```
+:::
+
+::: code-group
+```[Output]
+....................
+....................
+....................
+.....
+```
+```env [Example]
+SIMPLE_OUTPUT_DOTS_PER_LINE=20
+```
+:::
+
 ## Stop on failure
 
 > `STOP_ON_FAILURE=false`

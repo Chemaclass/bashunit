@@ -9,6 +9,7 @@
 - Add `SHOW_EXECUTION_TIME` to environment config
 - Add docs for environment variables
 - Improve data provider output
+- Add `SIMPLE_OUTPUT_DOTS_PER_LINE` to environment config
 
 ## [0.9.0](https://github.com/TypedDevs/bashunit/compare/0.8.0...0.9.0) - 2023-10-15
 
