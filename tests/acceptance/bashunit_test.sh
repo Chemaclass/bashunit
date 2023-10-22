@@ -44,6 +44,38 @@ function test_4() { assert_equals \"1\" \"1\" ; }" > $test_file
   rm $test_file
 }
 
+function test_bashunit_when_a_test_passes_simple_output_with_custom_dots_per_line() {
+  local test_env_file=./tests/acceptance/.env.dots-per-line
+  local test_file=./tests/acceptance/fake_dots_test.sh
+  local fixture
+
+  fixture=$(printf ".....
+..
+\e[2mTests:     \e[0m \e[32m7 passed\e[0m, 7 total
+\e[2mAssertions:\e[0m \e[32m12 passed\e[0m, 12 total
+\e[42mAll tests passed\e[0m")
+
+  echo "
+#!/bin/bash
+function test_01() { assert_equals \"1\" \"1\" ; }
+function test_02() { assert_equals \"1\" \"1\" ; assert_equals \"1\" \"1\" ;}
+function test_03() { assert_equals \"1\" \"1\" ; assert_equals \"1\" \"1\" ;}
+function test_04() { assert_equals \"1\" \"1\" ; assert_equals \"1\" \"1\" ;}
+function test_05() { assert_equals \"1\" \"1\" ; assert_equals \"1\" \"1\" ;}
+function test_06() { assert_equals \"1\" \"1\" ; assert_equals \"1\" \"1\" ; }
+function test_07() { assert_equals \"1\" \"1\" ; }" > $test_file
+
+  cp "$TEST_ENV_FILE" "$test_env_file"
+
+  echo "SIMPLE_OUTPUT_DOTS_PER_LINE=5" >> $test_env_file
+
+  assert_contains "$fixture" "$(./bashunit --env "$test_env_file" "$test_file" --simple)"
+  assert_successful_code "$(./bashunit --env "$test_env_file" "$test_file" --simple)"
+
+  rm $test_env_file
+  rm $test_file
+}
+
 function test_bashunit_when_a_test_fail() {
   local test_file=./tests/acceptance/fake_fail_test.sh
   fixture=$(printf "Running ./tests/acceptance/fake_fail_test.sh
