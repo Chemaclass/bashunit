@@ -6,6 +6,7 @@
 - Improved `--filter|-f` to match function name with input string irrespective with location to `test` prefix.
 - Add assertions to log file
 - Improve UX by Removing trailing slashes `/` from the test directories naming output.
+- Ignore output colors when TERM is dumb
 
 ## [0.14.0](https://github.com/TypedDevs/bashunit/compare/0.13.0...0.14.0) - 2024-07-14
 
